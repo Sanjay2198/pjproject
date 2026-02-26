@@ -608,7 +608,7 @@ static void set_thread_display_name(const char *name)
 #endif
 }
 
-static unsigned WINAPI thread_main(void *param)
+static DWORD WINAPI thread_main(void *param)
 {
     pj_thread_t *rec = param;
     int result;
@@ -633,7 +633,7 @@ static unsigned WINAPI thread_main(void *param)
               rec->stk_max_usage, rec->caller_file, rec->caller_line));
 #endif
 
-    return result;
+    return (DWORD)result;
 }
 
 static pj_status_t create_thread(const char *thread_name,

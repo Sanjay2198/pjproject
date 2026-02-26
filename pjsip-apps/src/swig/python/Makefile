@@ -10,7 +10,7 @@ endif
 
 #PYTHON_SETUP_FLAGS = --inplace 
 ifeq ($(OS),Windows_NT)
-  PYTHON_PKG_DIR := $(shell $(PYTHON_EXE) -m site --user-site | sed 's/\\/\//g')
+  PYTHON_PKG_DIR := $(shell $(PYTHON_EXE) -c "import site, pathlib; print(pathlib.Path(site.getusersitepackages()).as_posix())")
   PYTHON_SETUP_FLAGS += --compiler=mingw32
   GCC_EXE=gcc.exe
 else
